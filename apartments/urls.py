@@ -4,10 +4,9 @@ from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns('apartments.views',
     # Examples:
-    url(r'^apartments/', include('apartments.urls')),
-    url(r'', include('realtdb.urls')),
+    url(r'^$', 'apartments_list', name='apartments-list'),
     # url(r'^assignment/', include('assignment.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Directory of apartments</h1>
+    <form action="." method="post">{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <p><input type="submit" value="Add to list"/></p>
+    </form>
+    <h2>List of known apartments</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Address</th>
+            <th>Area (m<sup>2</sup>)</th>
+            <th>Price</th>
+            <th>Realtor</th>
+            <th>Number of rooms</th>
+            <th>Floor number</th>
+            <th>Total floors number</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for apartment in apartments %}
+            <tr>
+                <td>{{ apartment.address }}</td>
+                <td>{{ apartment.area }}</td>
+                <td>{{ apartment.price }}</td>
+                <td>{{ apartment.realtor.name }}</td>
+                <td>{{ apartment.rooms_num }}</td>
+                <td>{{ apartment.floor }}</td>
+                <td>{{ apartment.floors_total }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+            <td colspan="7">No apartments found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
+
