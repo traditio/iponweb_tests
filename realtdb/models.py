@@ -3,7 +3,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 from django.core.exceptions import ValidationError
-from django.utils.safestring import mark_safe
+
 
 class Realtor(models.Model):
     name = models.CharField(max_length=100)
@@ -18,7 +18,7 @@ class BaseApartment(models.Model):
 
     realtor = models.ForeignKey(Realtor, verbose_name=u'Realtor')
     address = models.CharField(u'Address', max_length=100)
-    area = models.FloatField(mark_safe(u'Area (m^2)'), help_text=u"In square meters")
+    area = models.FloatField(u'Area (m^2)', help_text=u"In square meters")
     price = models.DecimalField(u'Price', max_digits=11, decimal_places=2)
 
 
