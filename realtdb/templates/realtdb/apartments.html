@@ -1,0 +1,30 @@
+{% extends "realtdb/base.html" %}
+{% block list %}
+<h2>List of known apartments</h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>{{ form.address.label }}</th>
+        <th>{{ form.area.label }}</th>
+        <th>{{ form.price.label }}</th>
+        <th>Realtor</th>
+        <th>{{ form.rooms_num.label }}</th>
+        <th>{{ form.floor.label }}</th>
+        <th>{{ form.floors_total.label }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for apartment in objects %}
+        <tr>
+            <td>{{ apartment.address }}</td>
+            <td>{{ apartment.area }}</td>
+            <td>{{ apartment.price }}</td>
+            <td>{{ apartment.realtor.name }}</td>
+            <td>{{ apartment.rooms_num }}</td>
+            <td>{{ apartment.floor }}</td>
+            <td>{{ apartment.floors_total }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

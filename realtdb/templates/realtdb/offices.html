@@ -1,6 +1,6 @@
 {% extends "realtdb/base.html" %}
 {% block list %}
-<h2>List of known houses</h2>
+<h2>List of known offices</h2>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -8,15 +8,17 @@
         <th>{{ form.area.label }}</th>
         <th>{{ form.price.label }}</th>
         <th>Realtor</th>
+        <th>{{ form.business_centre.label }}</th>
     </tr>
     </thead>
     <tbody>
-    {% for house in objects %}
+    {% for office in objects %}
         <tr>
-            <td>{{ house.address }}</td>
-            <td>{{ house.area }}</td>
-            <td>{{ house.price }}</td>
-            <td>{{ house.realtor.name }}</td>
+            <td>{{ office.address }}</td>
+            <td>{{ office.area }}</td>
+            <td>{{ office.price }}</td>
+            <td>{{ office.realtor.name }}</td>
+            <td>{{ office.business_centre }}</td>
         </tr>
     {% endfor %}
     </tbody>

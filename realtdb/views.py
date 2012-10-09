@@ -1,25 +1,21 @@
 #-*- coding:utf-8 -*-
-
-from decimal import Decimal
 import random
 
 from django.shortcuts import render, redirect
 
-from realtdb.forms import HouseForm
-from realtdb.models import Realtor, House
+from realtdb.models import Realtor
 
 
-def house_list(request):
+def house_list(request, form_cls, template):
     if request.method == "POST":
         random_realtor = random.choice(Realtor.objects.all())
-        f = HouseForm(request.POST)
+        f = form_cls(request.POST)
         if f.is_valid():
-            new_house = f.save(commit=False)
-            new_house.realtor = random_realtor
-            new_house.save()
+            obj = f.save(commit=False)
+            obj.realtor = random_realtor
+            obj.save()
             return redirect(request.path)
     else:
-        f = HouseForm()
-
-    house_list = House.objects.select_related().order_by('-id')
-    return render(request, "realtdb/houses.html", {'house_list': house_list, 'form': f})
+        f = form_cls()
+    objects = form_cls.Meta.model.objects.select_related().order_by('-id')
+    return render(request, "realtdb/{}.html".format(template), {'objects': objects, 'form': f})
