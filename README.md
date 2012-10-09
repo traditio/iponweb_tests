@@ -80,3 +80,21 @@ Apartments page is pretty similar to houses but contains three additional fields
 You should make a separate page for adding apartments, similarly to houses. Please keep in mind that eventually future you might need to deal with other kinds of the real estate like rooms, offices etc.
 
 Also, please, ensure that user is not able to enter number of floor greater than total number of floors in building.
+
+
+Parallel computing test
+=======================
+
+This is a test for processing data in parallel and merging results together.
+
+Suppose you have a set of data sources (files, in this case - you can find a test set attached below) that provides you data in a format of key,value. Keys are ordered (ASC) but not grouped, so B would always go after A, but there might be more than one B. data is positive integer number.
+Let's say you have 3 input data sources.
+Your task is:
+
+* create a separate thread for each data source
+* group incoming data in each thread. Data should be summarized (so if there are 5 records of 'B' key, each with 5 as data field, data should be 25 in a grouped result. You can also group results one merge stage if you will.
+* merge streams together, grouping by key value. Data values should be summarized the same way.
+
+at the end, you should get an ordered list of unique keys with a sum of their respective values.
+
+Attached files are a simple example to save the download time - to try the real performance, you might want to generate yourself a bigger set (just remember the requirements).
