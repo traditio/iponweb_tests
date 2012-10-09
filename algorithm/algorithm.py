@@ -7,11 +7,13 @@ class Infinity(object):
 
 def _change_priority(priority_queue, new_priority, item):
     assert isinstance(priority_queue, list)
-    if priority_queue:
-        for entry in priority_queue:
-            if entry[-1] == item:
-                entry[0] = new_priority
-    else:
+    changed = False
+    for entry in priority_queue:
+        if entry[-1] == item:
+            entry[0] = new_priority
+            changed = True
+            break
+    if not changed:
         priority_queue.append([new_priority, item])
     heapify(priority_queue)
 
